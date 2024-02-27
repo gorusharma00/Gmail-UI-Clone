@@ -6,12 +6,12 @@ This project is a clone of the Gmail user interface, built with HTML and Tailwin
 
 ## Preview
 
-![screenshot]()
+![screenshot](https://github.com/gorusharma00/Gmail-UI-Clone/assets/108645957/f2329bb0-4097-496c-b757-9f819170f3de)
 
 
 ## Live Demo
 
-See it in action: [click for a live demo]().
+See it in action: [click for a live demo](https://ui-gmail-clone.netlify.app/).
 
 
 ## Inspiration
