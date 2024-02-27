@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, initial-scale=1.0">
+    <title>Gmail Clone</title>
+    <link href="./src/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/pics/gmail-fav-icon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/136b89f4e6.js" crossorigin="anonymous"></script>
+</head>
+<body class="h-screen font-sourceSans bg-[#F6F8FC] antialiased overflow-hidden">
+    
+    <!-- navbar starts  -->
+    <nav class="my-3 mx-4 flex items-center justify-between">
+
+        <div class="flex w-[85%] items-center">
+
+            <div class="flex">
+                <button class="p-3 rounded-full hover:bg-[#E8EAED]"><img class="w-6 h-6" src="./assets/icons/hamburger-ico.svg" alt=""></button>
+                <a href="#" class="m-1"><img src="./assets/pics/gmail-logo.png" alt=""></a>
+            </div>
+
+            <div class="hidden md:flex ml-32 bg-[#EAF1FB] w-[45%] justify-between p-2 group focus-within:bg-white rounded-full focus-within:shadow-md h-full ">
+
+                <div class="flex w-[90%]">
+                    <button class="hover:bg-[#E8EAED] rounded-full p-1"><img src="./assets/icons/search-ico.svg" alt=""></button> 
+                    <input type="text" placeholder="Search mail" class="bg-[#EAF1FB] text-base placeholder-[#666666] font-medium w-full focus:outline-none focus-within:bg-white"> 
+                </div>
+                <button class="hover:bg-[#E8EAED] rounded-full p-1"><img src="./assets/icons/search-option-ico.svg" alt=""></button>   
+
+            </div>
+
+        </div>
+
+        <div class="flex gap-2 items-center">
+            <button class="block md:hidden hover:bg-[#E8EAED] rounded-full p-2"><img class="w-7" src="./assets/icons/search-ico.svg" alt=""></button> 
+            <button class="hover:bg-[#E8EAED] rounded-full p-2"><img src="./assets/icons/support-ico.svg" alt=""></button>
+            <button class="hover:bg-[#E8EAED] rounded-full p-2"><img src="./assets/icons/settings-ico.svg" alt=""></button>
+            <button class="hover:bg-[#E8EAED] rounded-full p-2"><img src="./assets/icons/apps-ico.svg" alt=""></button>
+            <button class="w-9"><img class="rounded-full" src="./assets/pics/profile-pic.jpg" alt=""></button>
+        </div>
+    </nav>
+        <!-- navbar ends  -->
+
+        <main class="flex w-full h-full">
+
+             <!-- left side bar starts  -->
+            <div class="hidden lg:flex mt-4 flex-col w-64 pr-1 xl:pr-3">
+        
+                <div class="flex bg-[#C2E7FF] py-4 px-5 ml-3 rounded-2xl hover:drop-shadow-lg hover:cursor-pointer w-36">
+                    <button class="flex font-semibold text-[#001d35] gap-3 text-base items-center"><img src="./assets/pics/compose ico.png" alt="">Compose</button> 
+                </div>
+        
+                <div class="flex flex-col w-full mt-5">
+        
+                    <div class="flex w-full pl-8 justify-between text-[#001D35] font-semibold items-center bg-[#d3e3fd] py-1 pr-2 rounded-r-full text-lg">
+                        <button class="flex gap-4 items-center"><img src="./assets/pics/inbox ico.png" alt="">Inbox</button>
+                        <span class="text-sm">4,259</span>
+                    </div>
+        
+                    <button class="flex gap-4 items-center pl-8 text-[#001D35] py-1 pr-2 rounded-r-full hover:bg-[#dde3ea]"><img src="./assets/pics/starred ico.png" alt="">Starred</button>
+                    <button class="flex gap-4 items-center pl-8 text-[#001D35] py-1 pr-2 rounded-r-full hover:bg-[#dde3ea]"><img src="./assets/pics/snoozed ico.png" alt="">Snoozed</button>
+                    <button class="flex gap-4 items-center pl-8 text-[#001D35] py-1 pr-2 rounded-r-full hover:bg-[#dde3ea]"><img src="./assets/pics/sent ico.png" alt="">Sent</button>
+        
+                    <div class="flex w-full pl-8 justify-between text-[#001D35] font-semibold items-center hover:bg-[#dde3ea] py-1 pr-2 rounded-r-full text-lg">
+                        <button class="flex gap-4 items-center"><img src="./assets/pics/draft ico.png" alt="">Drafts</button>
+                        <span class="text-sm">7</span>
+                    </div>
+        
+                    <button class="flex gap-4 items-center pl-8 text-[#001D35] py-1 pr-2 rounded-r-full hover:bg-[#dde3ea]"><img src="./assets/pics/down arrow ico.png" alt="">More</button>
+        
+                    <div class="flex w-full pl-7 justify-between text-[#001D35] font-medium items-center py-1  rounded-r-full mt-3">
+                        <span class="text-xl">Labels</span>
+                        <button class="p-2 hover:bg-[#E8EAED] rounded-full"><img src="./assets/pics/add ico.png" alt=""></button>
+                    </div> 
+                    
+                    <div class="flex w-full pl-7 justify-between text-[#001D35] items-center hover:bg-[#dde3ea] py-1 pr-2 rounded-r-full group hover:cursor-pointer">
+                        <button class="flex gap-4 items-center"><img src="./assets/pics/trash ico.png" alt="">[Imap]/Trash</button>
+        
+                        <div class="hidden group-hover:flex pr-2">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                      
+                </div>
+            </div>
+            <!-- left side bar ends  -->
+
+            <!-- mail section starts  -->
+
+            <div class="flex bg-white m-2 mb-[4.5rem] md:mb-[5.5rem] rounded-xl flex-col w-full lg:w-[82%] xl:w-[80%]">
+
+                <div class="flex py-2 px-3 justify-between text-[#5A5D5C]">
+
+                    <div class="flex items-center font-extrabold gap-2">
+                        <div class="flex gap-1 p-2 rounded-full hover:bg-[#E8EAED]">
+                            <input type="checkbox" name="" id="">
+                            <i class="fa-solid fa-caret-down text-xs"></i>
+                        </div>
+                        <button><i class="fa-solid fa-rotate-right text-xs p-2 rounded-full hover:bg-[#E8EAED]"></i></button>
+                        <button> <i class="fa-solid fa-ellipsis-vertical text-xs p-2 rounded-full hover:bg-[#E8EAED]"></i></button>
+                    </div>
+
+                    <div class="flex gap-4 items-center text-sm">
+                        <span class="text-[#777777] font-medium p-2 rounded hover:bg-[#E8EAED] cursor-pointer">1-50 of 4,988</span>
+                        <i class="fa-solid fa-angle-left text-[#b8b8b8]"></i>
+                        <i class="fa-solid fa-angle-right p-2 rounded hover:bg-[#E8EAED] cursor-pointer rounded-full"></i>
+                    </div>
+
+                </div>
+
+                <div class="overflow-y-scroll overflow-x-hidden scrollbar pr-1 mt-1">
+
+                    <!-- mail category section  starts -->
+                    <div class="flex text-base text-[#444746] font-medium border-b border-[#E6E8E8]">
+
+                        <div class="pl-4 py-3 hover:bg-[#F4F4F4] pr-28 text-[#0B57D0] cursor-pointer border-b-[3px] border-[#0B57D0]">
+                            <button class="flex gap-3 items-center"><i class="fa-solid fa-inbox"></i>Primary</button>
+                        </div>
+                        <div class="pl-6 py-3 hover:bg-[#F4F4F4] pr-28 cursor-pointer">
+                            <button class="flex gap-3 items-center"><i class="fa-solid fa-tag"></i>Promotions</button>
+                        </div>
+                        <div class="pl-6 py-3 hover:bg-[#F4F4F4] pr-28 cursor-pointer">
+                            <button class="flex gap-3 items-center"><i class="fa-solid fa-user-group"></i>Social</button>
+                        </div> 
+
+                    </div>
+                    <!-- mail category section  ends -->
+
+                    <!-- emails list section starts  -->
+                    <div class="flex flex-col">
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Unstop Jobs</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Google is hiring Software Engineer at INR 40 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Tap here to view the opportunities! Formerly Dare2Compete Job Opportunities Software Engineer, Payments Software Engineer, Payments Google Salary: INR 40 LPA(via glassdoor) Apply now Senior Software</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 22</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Your Indeed job feed</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">New jobs from your 23 January, 2024 feed</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- See opportunities at Meesho</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">11:02AM</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Internshala Trainin.</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap text-[#202124] overflow-hidden text-ellipsis">Gourav time se so jaana, placement ho jayegi...</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Sweet dreams about your career are coming true with this Placement Guarantee Course </p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 22</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Udemy</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">New Year’s savings end today!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Do you have the courses you need to reach your 2024 goals?</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 11</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">YouTube</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Annual reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- This email is an annual reminder that your use of YouTube is subject to the Terms of Service, Community Guidelines and Google's Privacy Policy. While our Terms of Service remain a legal document,</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Google Maps</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Your review reached 50 views</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Let's celebrate your impact</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Mindtree</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Mindtree is hiring Senior Software Engineer at INR 15 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Mindtree is currently looking for Senior Software Engineer who will be accountable for the timely development and delivery of complex engineering design and support deliveries, focusing</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">12/23/30</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Google</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Google is hiring Software Engineer- Front End at INR 35 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Google is currently looking for Software Engineer- Front End who will write product or system development code, participate in, or lead design reviews with peers and stakeholders to decide</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 18</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Internshala Trainin.</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Gourav time se so jaana, placement ho jayegi...</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Sweet dreams about your career are coming true with this Placement Guarantee Course </p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 22</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Your Indeed job feed</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">New jobs from your 23 January, 2024 feed</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- See opportunities at Meesho</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">11:02AM</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Google</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Google is hiring Software Engineer- Front End at INR 35 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Google is currently looking for Software Engineer- Front End who will write product or system development code, participate in, or lead design reviews with peers and stakeholders to decide</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 18</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">YouTube</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Annual reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- This email is an annual reminder that your use of YouTube is subject to the Terms of Service, Community Guidelines and Google's Privacy Policy. While our Terms of Service remain a legal document,</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">YouTube</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Annual reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- This email is an annual reminder that your use of YouTube is subject to the Terms of Service, Community Guidelines and Google's Privacy Policy. While our Terms of Service remain a legal document,</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Mindtree</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Mindtree is hiring Senior Software Engineer at INR 15 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Mindtree is currently looking for Senior Software Engineer who will be accountable for the timely development and delivery of complex engineering design and support deliveries, focusing</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">12/23/30</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Mindtree</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Mindtree is hiring Senior Software Engineer at INR 15 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Mindtree is currently looking for Senior Software Engineer who will be accountable for the timely development and delivery of complex engineering design and support deliveries, focusing</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">12/23/30</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Google</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Google is hiring Software Engineer- Front End at INR 35 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Google is currently looking for Software Engineer- Front End who will write product or system development code, participate in, or lead design reviews with peers and stakeholders to decide</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 18</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">YouTube</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Annual reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- This email is an annual reminder that your use of YouTube is subject to the Terms of Service, Community Guidelines and Google's Privacy Policy. While our Terms of Service remain a legal document,</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Google Maps</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Your review reached 50 views</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Let's celebrate your impact</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Jobs@Mindtree</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">Mindtree is hiring Senior Software Engineer at INR 15 LPA, Apply Now!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Hi Gourav, Mindtree is currently looking for Senior Software Engineer who will be accountable for the timely development and delivery of complex engineering design and support deliveries, focusing</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">12/23/30</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] font-semibold overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Udemy</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+                                <p class="whitespace-nowrap text-[#202124] font-semibold overflow-hidden text-ellipsis">New Year’s savings end today!</p>
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Do you have the courses you need to reach your 2024 goals?</p>
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] font-semibold flex justify-end">Jan 11</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">YouTube</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Annual reminder about YouTube’s Terms of Service, Community Guidelines and Privacy Policy</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- This email is an annual reminder that your use of YouTube is subject to the Terms of Service, Community Guidelines and Google's Privacy Policy. While our Terms of Service remain a legal document,</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                        <!-- email starts -->
+                        <div class="flex px-1 py-1 justify-between w-full leading-none h-10 items-center cursor-pointer border-b border-[#E6E8E8] hover:shadow-md bg-[#F2F6FC] text-[0.94rem]">
+
+                            <div class="flex gap-1 items-center cursor-pointer w-[20%] justify-start">
+                                <input class="w-6 hidden md:block" type="checkbox" name="" id="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/starred ico.png" alt="">
+                                <img class="hidden md:block p-1 rounded-full hover:bg-[#E8EAED]" src="./assets/pics/important marker.png" alt="">
+                                <p class="text-[#202124] overflow-hidden text-ellipsis whitespace-nowrap p-2 md:p-0">Google Maps</p>
+                            </div>
+
+                            <div class="flex items-center w-[60%]">
+
+                                <p class="whitespace-nowrap overflow-hidden text-ellipsis text-[#202124]">Your review reached 50 views</p>
+
+                                <p class="overflow-hidden text-ellipsis whitespace-nowrap  text-[#5e5e5e]">- Let's celebrate your impact</p>
+
+                            </div>
+
+                            <span class="w-[10%] text-[#202124] flex justify-end">Jan 6</span>
+                        </div>
+                        <!-- email ends -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- right side bar starts  -->
+
+            <div class="hidden xl:flex h-full flex-col mt-4 items-center w-[3%] mx-1 gap-5">
+
+                <button class="p-2 rounded-3xl hover:bg-[#E8EAED]"><img class="w-5" src="./assets/pics/calendar-ico.png" alt=""></button>
+                <button class="p-2 rounded-3xl hover:bg-[#E8EAED]"><img class="w-5" src="./assets/pics/keep-ico.png" alt=""></button>
+                <button class="p-2 rounded-3xl hover:bg-[#E8EAED]"><img class="w-5" src="./assets/pics/tasks-ico.png" alt=""></button>
+                <button class="p-2 rounded-3xl hover:bg-[#E8EAED]"><img class="w-5" src="./assets/pics/contacts-ico.png" alt=""></button>
+                <hr class="border-[#E6E8E8] w-5">
+                <button class="p-2 rounded-3xl hover:bg-[#E8EAED]"><img class="w-5" src="./assets/pics/add ico.png" alt=""></button>
+
+            </div>
+
+        </main>
+       
+</body>
+</html>
